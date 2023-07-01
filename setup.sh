@@ -35,7 +35,7 @@ echo -e "${GREEN}Module: Install ThingsIX Forwarder${NC}"
 mkdir /etc/thingsix-forwarder
 # start the forwarder container
 docker run -d --name thingsix-forwarder -p 1685:1680/udp --restart unless-stopped -v /etc/thingsix-forwarder:/etc/thingsix-forwarder ghcr.io/thingsixfoundation/packet-handling/forwarder:1.1.1 --net=main
-
+echo -e "${GREEN}Run the same command again to onboard your Device if you have setup on Browan Dashboard${NC}"
 }
 
 function onboard() {
@@ -64,6 +64,18 @@ function onboard() {
 
 }
 
+function firewall() {
+	echo -e "${GREEN}Active Firewall UFW and Fail2ban${NC}"
+	echo -e "${YELLOW}Now we will add the rules to UFW${NC}"
+	# add ufw rules
+	sudo ufw allow ssh
+	sudo ufw allow 1685
+	sudo apt install fail2ban
+	sleep 3
+	sudo systemctl enable fail2ban now
+}
+
+
 if ! figlet -v > /dev/null 2>&1; then
 	sudo apt-get update -y > /dev/null 2>&1
 	sudo apt-get install -y figlet > /dev/null 2>&1
@@ -89,7 +101,8 @@ echo -e "${GREEN}Special thanks to hekopath ${NC}"
 echo -e "${YELLOW}================================================================${NC}"
 echo -e "${CYAN}1  - Installation of ThingsIX forwarder${NC}"
 echo -e "${CYAN}2  - Onboarding of ThingsIX Gateway${NC}"
-echo -e "${CYAN}3  - Abort${NC}"
+echo -e "${CYAN}3  - Active Firewall UFW and fail2ban${NC}"
+echo -e "${CYAN}4  - Abort${NC}"
 echo -e "${YELLOW}================================================================${NC}"
 
 read -rp "Pick an option and hit ENTER: "
@@ -105,6 +118,11 @@ case "$REPLY" in
 		onboard
  ;;
  3) 
+		clear
+		sleep 1
+		exit
+ ;;
+ 4) 
 		clear
 		sleep 1
 		exit
