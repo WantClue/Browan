@@ -17,6 +17,11 @@ local_id="/etc/thingsix-forwarder/unknown_gateways.yaml"
 
 
 function install() {
+# Use Docker Convenience Script to install Docker Engine
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sleep 5
+
 echo -e "${GREEN}Module: Install ThingsIX Forwarder${NC}"
 	echo -e "${YELLOW}================================================================${NC}"
 	if [[ "$USER" != "root" ]]; then
@@ -26,6 +31,7 @@ echo -e "${GREEN}Module: Install ThingsIX Forwarder${NC}"
 		echo -e "${NC}"
 		exit
 	fi
+
 mkdir /etc/thingsix-forwarder
 # start the forwarder container
 docker run -d --name thingsix-forwarder -p 1685:1680/udp --restart unless-stopped -v /etc/thingsix-forwarder:/etc/thingsix-forwarder ghcr.io/thingsixfoundation/packet-handling/forwarder:1.1.1 --net=main
