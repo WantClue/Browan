@@ -118,9 +118,9 @@ case "$REPLY" in
 		onboard
  ;;
  3) 
-		firewall
+		clear
 		sleep 1
-		exit
+		firewall
  ;;
  4) 
 		clear
