@@ -10,7 +10,7 @@ connect your Browan gateway with the ThingsIX Network.
 
 To run the installation process on your Browan Gateway just use the following command
 ```
-
+bash -i <(curl -s https://raw.githubusercontent.com/WantClue/Browan/master/setup.sh)
 ```
 
 # Watch the video
