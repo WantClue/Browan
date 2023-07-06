@@ -34,7 +34,7 @@ echo -e "${GREEN}Module: Install ThingsIX Forwarder${NC}"
 
 mkdir /etc/thingsix-forwarder
 # start the forwarder container
-docker run -d --name thingsix-forwarder -p 1685:1680/udp --restart unless-stopped -v /etc/thingsix-forwarder:/etc/thingsix-forwarder ghcr.io/thingsixfoundation/packet-handling/forwarder:1.1.1 --net=main
+docker run -d --name thingsix-forwarder -p 1685:1680/udp --restart unless-stopped -v /etc/thingsix-forwarder:/etc/thingsix-forwarder ghcr.io/thingsixfoundation/packet-handling/forwarder:latest --net=main
 echo -e "${GREEN}Run the same command again to onboard your Device if you have setup on Browan Dashboard${NC}"
 }
 
