@@ -16,6 +16,11 @@ To run the installation process on your Browan Gateway just use the following co
 bash -i <(curl -s https://raw.githubusercontent.com/WantClue/Browan/master/setup.sh)
 ```
 
+# Roadmap
+
+- [ ] Refactor to Docker compose
+- [x] Add Watchtower
+
 # Watch the video
 
-Link: 
+Link: https://youtu.be/YvFg908QZuA
